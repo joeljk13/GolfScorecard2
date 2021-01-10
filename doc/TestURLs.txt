@@ -1,0 +1,7 @@
+demo
+	https://localhost/DevGolfScorecard2/main_dev.html#home/15ee1cfb
+	https://localhost/DevGolfScorecard2/main_dev.html#select-course/15ee1cfb
+
+jimkottas
+	https://localhost/DevGolfScorecard2/main_dev.html#home/54c342d1
+	https://localhost/DevGolfScorecard2/main_dev.html#select-course/54c342d1

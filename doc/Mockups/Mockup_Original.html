@@ -1,0 +1,270 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Golf Scorecard</title>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+		<meta name="robots" content="noindex, nofollow, noarchive">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<style>@media print {#ghostery-purple-box {display:none !important}}</style>
+		<link rel="stylesheet" href="css/scorecard.css">
+	</head>
+	<body>
+		<div>
+			<span id="program-name">Golf Scorecard</span>
+			<span id="program-version">Version 0.10.0</span>
+			<span id="date-span">Date:<span id="date">1/5/2020</span>
+			</span>
+		</div>
+		<form method="post">
+			<div id="choose-course">
+				<label id="select-course-label" for="select-course">Select Course: </label>
+				<select id="select-course" title="Click to select a predefined course">
+					<option value="course_The_General_Devens_MA">The General (Devens, MA)</option>
+					<option value="course_The_Hill_Devens_MA">The Hill (Devens, MA)</option>
+					<option value="course_Muldoon_Park_Pelham_NH">Muldoon Park (Pelham, NH)</option>
+					<option value="course_Coggshall_Park_Fitchburg_MA">Coggshall Park (Fitchburg, MA)</option>
+					<option value="course_Pyramids_-_Silver_Leicester_MA">Pyramids - Silver (Leicester, MA)</option>
+					<option value="course_Pyramids_-_Gold_Leicester_MA">Pyramids - Gold (Leicester, MA)</option>
+					<option value="course_Maple_Hill_-_Red_Leicester_MA">Maple Hill - Red (Leicester, MA)</option>
+					<option value="course_Maple_Hill_-_White_Leicester_MA">Maple Hill - White (Leicester, MA)</option>
+					<option value="course_Maple_Hill_-_Blue_Leicester_MA">Maple Hill - Blue (Leicester, MA)</option>
+					<option value="course_Maple_Hill_-_Gold_Leicester_MA">Maple Hill - Gold (Leicester, MA)</option>
+					<option value="course_Simonds_Park_Burlington_MA">Simonds Park (Burlington, MA)</option>
+					<option value="course_Typical_Disc_Golf_Course">Typical Disc Golf Course</option>
+					<option value="course_Typical_Minigolf_Course">Typical Minigolf Course</option>
+				</select>
+			</div>
+			<table id="scorecard">
+				<thead>
+					<tr id="labels-row">
+						<td>Hole #</td>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+						<td>8</td>
+						<td>9</td>
+						<td>Out</td>
+						<td>10</td>
+						<td>11</td>
+						<td>12</td>
+						<td>13</td>
+						<td>14</td>
+						<td>15</td>
+						<td>16</td>
+						<td>17</td>
+						<td>18</td>
+						<td>In</td>
+						<td>Total</td>
+					</tr>
+					<tr id="par-row">
+						<td>Par</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par-sum">28</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par-sum">28</td>
+						<td class="par-sum">56</td>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr id="buttons-row">
+						<td id="player-buttons">
+							<button type="button">Add Player</button>
+							<button type="button">Remove Player</button>
+						</td>
+						<td colspan="22">
+							<button type="button" id="save-button">Save</button>
+						</td>
+					</tr>
+					<tr>
+						<td id="course-notes-label">
+							<label for="course-notes">Notes</label>
+						</td>
+						<td id="course-notes" colspan="21">
+							<textarea id="course-notes-input" rows="2" cols="72" placeholder="Enter any memorable thoughts about the course or round"></textarea>
+						</td>
+					</tr>
+					<tr id="scorecard-id-row">
+						<td colspan="22">Scorecard ID: <span id="scorecard-id">20200105_204922196_182612</span>
+						</td>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr>
+						<td>
+							<input class="player-name-input" placeholder="Player 1" type="text">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score-sum">0<sup/>
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div>&nbsp;</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score-sum">0<sup/>
+						</td>
+						<td class="score-sum">0<sup/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<div id="resources-label">Disc Golf Resources:</div>
+		<ul>
+			<li>
+				<a href="http://www.dgcoursereview.com/">DGCourseReview.com</a> – Has lots of information on disc golf courses everywhere.
+			</li>
+			<li>
+				<a href="http://www.inboundsdiscgolf.com/">Inbounds Disc Golf</a> – Has a comparison of the various types of discs.
+			</li>
+		</ul>
+		<p id="copyright">Copyright © 2014–2019 Jim &amp; Joel Kottas.  All rights reserved.</p>
+<!--
+		<script src="js/jquery/jquery-3.4.1.min.js"/>
+		<script src="js/scorecard.js"/>
+		<script src="js/courses.js"/>
+		<noscript>You must have Javascript enabled for this to work.</noscript>
+-->
+	</body>
+</html>

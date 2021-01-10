@@ -1,0 +1,165 @@
+{
+	"created-by": "Golf Scorecard Version 2.mockup",
+	"data-schema-version": 2,
+    "id": "JoelJimRounds_20200111_140224977_854977",
+    "course": {
+        "name": "Pinto Lake Disc Golf Course",
+        "address": "110 Rancho Todos Santos Road",
+        "city": "Watsonville",
+        "state": "CA",
+        "zip": "95077",
+        "dg_url": "https://www.dgcoursereview.com/course.php?id=3107",
+		"number-of-holes": 19,
+		"_comment": "The 'holes' property is an array of 2-tuples with the hole number as a string and its par as a number.",
+        "holes": [
+			["1", 3],
+			["2", 3],
+			["3", 3],
+			["4", 3],
+			["5", 3],
+			["6", 3],
+			["7", 3],
+			["8", 3],
+			["9", 3],
+			["10", 3],
+			["11", 5],
+			["12", 3],
+			["13", 3],
+			["14", 3],
+			["15", 3],
+			["16", 3],
+			["17", 3],
+			["18", 3],
+			["14a", 3]
+		]
+    },
+    "players": [
+        "Joel",
+        "Jim"
+    ],
+    "scores": {
+        "Joel": {
+			"1": {
+				"number": 2
+			},
+			"2": {
+				"number": 4
+			},
+			"3": {
+				"number": 5
+			},
+			"4": {
+				"number": 5
+			},
+			"5": {
+				"number": 4
+			},
+			"6": {
+				"number": 7,
+				"b": 2
+			},
+			"7": {
+				"number": 4
+			},
+			"8": {
+				"number": 4
+			},
+			"9": {
+				"number": 3,
+				"m": 1
+			},
+			"10": {
+				"number": 4
+			},
+			"11": {
+				"number": 8
+			},
+			"12": {
+				"number": 3
+			},
+			"13": {
+				"number": 3
+			},
+			"14": {
+				"number": 6
+			},
+			"15": {
+				"number": 4,
+				"m": 1
+			},
+			"16": {
+				"number": 5
+			},
+			"17": {
+				"number": 2
+			},
+			"18": {
+				"number": 4
+			},
+			"14a": {
+				"number": 3
+			}
+        },
+        "Jim": {
+			"1": {
+				"number": 3
+			},
+			"2": {
+				"number": 3
+			},
+			"3": {
+				"number": 7
+			},
+			"4": {
+				"number": 3
+			},
+			"5": {
+				"number": 3
+			},
+			"6": {
+				"number": 4
+			},
+			"7": {
+				"number": 4
+			},
+			"8": {
+				"number": 3
+			},
+			"9": {
+				"number": 4
+			},
+			"10": {
+				"number": 4
+			},
+			"11": {
+				"number": 8
+			},
+			"12": {
+				"number": 4
+			},
+			"13": {
+				"number": 4
+			},
+			"14": {
+				"number": 4
+			},
+			"15": {
+				"number": 4
+			},
+			"16": {
+				"number": 7,
+				"b": 1
+			},
+			"17": {
+				"number": 3
+			},
+			"18": {
+				"number": 5
+			},
+			"14a": {
+				"number": 4
+			}
+        }
+    },
+    "notes": "Hole #11 was 1288 feet long.  We needed the new disc retriever on the 18th hole to retrieve a disc that Joel put in a tree. "
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Golf Scorecard 2</title>
+  <!-- These no-cache directives may be ignored by the browser: -->
+  <meta http-equiv="pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <!--
+      The best bet is to set the following HTTP header in the web server:
+          Cache-Control: no-store
+      Tip: When debugging in Firefox, check the "Disable Cache" checkbox when the Developer Tools area is open.
+  -->
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!-- Do not send any referrer headers as this will cause the links to dgcoursereview.com to break. -->
+  <meta name="referrer" content="no-referrer" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <!--DEV--> <link rel="stylesheet" type="text/css" href="css_dev/gsc2app.css" />
+  <!--REL    <link rel="stylesheet" type="text/css" href="css/gsc2app.css" /> -->
+</head>
+<body>
+  <noscript>You must have Javascript enabled for this web site to work.<br/><br/></noscript>
+
+  <!-- First load in the standard JavaScript libraries. -->
+
+  <!--DEV--> <script src="lib/js/jquery/3.5.1/jquery.js" type="text/javascript" integrity="sha384-/LjQZzcpTzaYn7qWqRIWYC5l8FWEZ2bIHIz0D73Uzba4pShEcdLdZyZkI4Kv676E"></script>
+  <!--REL    <script src="lib/js/jquery/3.5.1/jquery-min.js" type="text/javascript" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"></script> -->
+
+  <!--DEV--> <script src="lib/js/underscore/1.12.0/underscore.js" type="text/javascript" integrity="sha384-c2KlOa3paLe30AW5Qa3+vcCLSljUHwAc8MUc7CG0ShhY5SqNwsL9Ly04+xtj+7IK"></script>
+  <!--REL    <script src="lib/js/underscore/1.12.0/underscore-min.js" type="text/javascript" integrity="sha384-sAJES/wIabyZPf44Bu42Ma5rrtz1IYyQr8ebCXQ+WtSgYH/J+LkUXkJWPED+LRWZ"></script> -->
+
+  <!--DEV--> <script src="lib/js/backbone/1.4.0/backbone.js" type="text/javascript" integrity="sha384-nhWt56PME93S1JQLa+kxZkVkAPQAVXJ2QFp2upRdyHKS83dOhoiHLwkiWMcLjmPc"></script>
+  <!--REL <script src="lib/js/backbone/1.4.0/backbone-min.js" type="text/javascript" integrity="sha384-5VidHIOjI49MqYXYQ0MarRZNsVJJYGyYVWBvoAkdJdkd9tWK8W/vxSMLIFKEdFSC"></script> -->
+
+  <!--DEV--> <script src="lib/js/md5/2.14.0/md5.js" type="text/javascript" integrity="sha384-Ix98ugcLzca5yDOCSwPgGB3O7EqQtHE63gtlSWmZKclox3CV5edYcNk1J7Awet+3"></script>
+  <!--REL <script src="lib/js/md5/2.14.0/md5.min.js" type="text/javascript" integrity="sha384-b157Dwravi6/bNp1Yp2NbN6LvGrHrC54eXRSnAwCa3IBum58rNlOD4mMWX+uYKZj"></script> -->
+
+  <!-- Now load in the scorecard-specific files -->
+
+  <!--DEV--> <script src="js_dev/1-commonutils.js" type="text/javascript" defer="defer"></script>
+  <!--DEV--> <script src="js_dev/2-serverapi.js" type="text/javascript" defer="defer"></script>
+  <!--DEV--> <script src="js_dev/3-models.js" type="text/javascript" defer="defer"></script>
+  <!--DEV--> <script src="js_dev/4-views.js" type="text/javascript" defer="defer"></script>
+  <!--DEV--> <script src="js_dev/5-collections.js" type="text/javascript" defer="defer"></script>
+  <!--DEV--> <script src="js_dev/6-controllers.js" type="text/javascript" defer="defer"></script>
+  <!--DEV--> <script src="js_dev/7-routes.js" type="text/javascript" defer="defer"></script>
+  <!--REL <script src="js/gsc2app.js" type="text/javascript" defer="defer" integrity="SRIHASH_GSC2APP_JS"></script> -->
+
+  <!-- Overall div which starts out hidden if scripts are not supported. -->
+  <table id="outer-container" class="overallcontainer overallcontainer--initialstate">
+    <tr id="title-container" class="outercontainer outercontainer__title">
+      <td>
+        <table id="title-area" class="innercontainer innercontainer__title">
+          <tr id="title-line" class="contentcontainer contentcontainer__title">
+            <td class="title">
+              <span id="program-name" class="title__programname">Golf Scorecard 2</span> &nbsp;
+              <span id="program-version" class="title__programversion">Version 0.5.0</span>
+            </td>
+            <td id="date-area" class="contentcontainer contentcontainer__date">
+                Date:&nbsp;<span id="date-container"></span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr id="pageheaderrow-container" class="outercontainer outercontainer__pageheader outercontainer__pageheader--initialstate">
+      <!-- Page header area whereby the page title can be displayed, along with overall navigation. -->
+      <td>
+        <div id="pageheader-container">
+        </div>
+      </td>
+    </tr>
+
+    <tr id="userspacerow-container" class="outercontainer outercontainer__userspacearea outercontainer__userspacearea--initialstate">
+      <!-- Userspace area whereby the user can enter in a phrase which will identify this user's scorecards. -->
+      <td>
+        <div id="userspace-container">
+        </div>
+      </td>
+    </tr>
+
+    <tr id="commandrow-container" class="outercontainer outercontainer__commandarea outercontainer__commandarea--initialstate">
+      <!-- Shows the command controls which allow the user to select what they want to do. -->
+      <td>
+        <div id="command-container">
+        </div>
+      </td>
+    </tr>
+
+    <tr id="courseselectorrow-container" class="outercontainer outercontainer__courseselectorarea outercontainer__courseselectorarea--initialstate">
+      <!-- Shows a control whereby a course may be selected for a new scorecard. -->
+      <td>
+        <div id="courseselector-container">
+          <p>Building course list...</p>
+        </div>
+      </td>
+    </tr>
+
+    <tr id="scorecardmgmtrow-container" class="outercontainer outercontainer__scorecardmgmtarea outercontainer__scorecardmgmtarea--initialstate">
+      <!-- Shows the area for managing existing scorecards -->
+      <td class="not-implemented-yet">
+        <br/>
+        <p>Scorecard management not implemented yet.</p>
+        <br/>
+      </td>
+    </tr>
+
+    <tr id="coursemgmtrow-container" class="outercontainer outercontainer__coursemgmtarea outercontainer__coursemgmtarea--initialstate">
+      <!-- Shows the area for managing courses for the current userspace -->
+      <td class="not-implemented-yet">
+        <br/>
+        <p>Course management not implemented yet.</p>
+        <br/>
+      </td>
+    </tr>
+
+    <tr id="scorecard-container" class="outercontainer outercontainer__scorecardarea outercontainer__scorecardarea--initialstate">
+      <!-- Shows the current scorecard area -->
+      <td>
+        <div id="active-course-container">
+          <p>Formatting active course information...</p>
+        </div>
+        <div id="active-scorecarddata-container">
+          <p>Creating new scorecard data area...</p>
+        </div>
+        <br/>
+        <div id="active-scorecardstats-container">
+          <p>Creating new scorecard statistics area...</p>
+        </div>
+      </td>
+    </tr>
+
+    <tr class="outercontainer outercontainer__resourcesarea outercontainer__resourcesarea--initialstate">
+      <td>
+        <br/>
+        <span class="resourcesarea--label">
+          Disc Golf Resources:
+        </span>
+        <div id="resources-container">
+          <ul>
+            <li>
+              <a href="https://www.dgcoursereview.com/" target="_blank">DGCourseReview.com</a>
+              &ndash; Has lots of information on disc golf courses everywhere.
+            </li>
+            <li>
+              <a href="http://www.inboundsdiscgolf.com/" target="_blank">Inbounds Disc Golf</a>
+              &ndash; Has a comparison of the various types of discs.
+            </li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+
+    <tr class="outercontainer outercontainer__copyrightarea outercontainer__copyrightarea--initialstate">
+      <td id="copyright" class="innercontainer innercontainer__copyright">
+        Copyright &copy; 2014&ndash;2021 Jim &amp; Joel Kottas.  All rights reserved.
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

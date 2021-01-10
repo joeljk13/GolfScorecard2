@@ -1,0 +1,134 @@
+/*!
+ * scorecard.css
+ *
+ * Defines the styles used in the Golf Scorecard web site.
+ *
+ * Copyright (c) 2014-2015 Jim and Joel Kottas.  All rights reserved.
+ */
+
+noscript {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: #C00;
+    color: white;
+    font-weight: bold;
+    padding: 2px;
+}
+
+#program-name {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+#program-version {
+    font-size: smaller;
+    font-style: italic;
+}
+
+#date-span {
+    float: right;
+}
+
+#choose-course {
+    margin-top: 1em;
+}
+
+#scorecard {
+    margin-top: 1em;
+    border: 2px solid black;
+    text-align: center;
+}
+
+#labels-row {
+    font-weight: bold;
+    background-color: black;
+    color: white;
+}
+
+#par-row {
+    font-weight: bold;
+    background-color: #FFCC66;
+}
+
+.score > input, .par > input {
+    width: 4em;
+}
+
+.score > div, .par > div {
+    width: 100%;
+    height: 100%;
+}
+
+#scorecard td {
+    padding: 2px;
+    border: 1px solid black;
+}
+
+.player-name-input {
+    border: none;
+    width: 96%;
+}
+
+.score {
+    min-width: 20px;
+    border-color: gray !important;
+}
+
+.score-sum {
+    font-weight: bold;
+    min-width: 40px;
+    border-color: gray !important;
+    background-color: #D8D8D8;
+}
+
+#course-notes-label {
+    font-weight: bold;
+    background-color: #CCFFFF;
+}
+
+#course-notes {
+    border: none !important;
+    background-color: #CCFFFF;
+}
+
+#course-notes-input {
+    border: 1px solid black;
+    resize: none;
+    height: 5em;
+    width: 96%;
+}
+
+#buttons-row {
+    background-color: #CCFFFF;
+    width: 100%;
+    vertical-align: middle;
+}
+
+#save-button {
+    width: 96%;
+}
+
+#scorecard-id-row {
+    background-color: #CCFFFF;
+    text-align: left;
+}
+
+#scorecard-id {
+    font-size: medium;
+    font-style: normal;
+}
+
+#resources-label {
+    margin-top: 1em;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#copyright {
+    margin-top: 1em;
+    font-size: smaller;
+    font-style: italic;
+}

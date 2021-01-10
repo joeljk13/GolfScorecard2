@@ -1,0 +1,847 @@
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Golf Scorecard</title>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+		<meta name="robots" content="noindex, nofollow, noarchive">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<style>@media print {#ghostery-purple-box {display:none !important}}</style>
+		<link rel="stylesheet" href="css/scorecard2.css">
+	</head>
+	<body>
+		<div>
+			<span id="program-name">Golf Scorecard</span>
+			<span id="program-version">Version 2.mockup.1</span>
+			<span id="date-span">Date:<span id="date">1/11/2020</span>
+			</span>
+		</div>
+		<br/>
+		<div>
+			<form>
+				<fieldset>
+					<legend>Course Information:</legend>
+					<table>
+						<tr>
+							<td style="text-align: right;">
+								Select Course:
+							</td>
+							<td>
+								<select id="select-course" title="Click to select a predefined course" title="Select a predefined course or set the information for your current course.">
+									<option value="course_TheGeneral_DevensMA">The General (Devens, MA)</option>
+									<option value="course_TheHill_DevensMA">The Hill (Devens, MA)</option>
+									<option value="course_MuldoonPark_PelhamNH">Muldoon Park (Pelham, NH)</option>
+									<option value="course_CoggshallPark_FitchburgMA">Coggshall Park (Fitchburg, MA)</option>
+									<option value="course_PyramidsSilver_LeicesterMA">Pyramids - Silver (Leicester, MA)</option>
+									<option value="course_PyramidsGold_LeicesterMA">Pyramids - Gold (Leicester, MA)</option>
+									<option value="course_MapleHillRed_LeicesterMA">Maple Hill - Red (Leicester, MA)</option>
+									<option value="course_MapleHillWhite_LeicesterMA">Maple Hill - White (Leicester, MA)</option>
+									<option value="course_MapleHillBlue_LeicesterMA">Maple Hill - Blue (Leicester, MA)</option>
+									<option value="course_MapleHillGold_LeicesterMA">Maple Hill - Gold (Leicester, MA)</option>
+									<option value="course_SimondsPark_BurlingtonMA">Simonds Park (Burlington, MA)</option>
+									<option value="course_PintoLake_WatsonvilleCA">Pinto Lake (Watsonville, CA)</option>
+									<option value="course_TypicalDiscGolfCourse">Other Disc Golf Course</option>
+									<option value="course_TypicalMiniGolfCourse">Minigolf Course</option>
+								</select>
+							</td>
+						<tr>
+							<td style="text-align: right;">Name:</td>
+							<td><input type="text" name="address" size="50" value="Pinto Lake Disc Golf Course" disabled title="The name of the current course. The scorecard must be unlocked in order to change this value."></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">Address:</td>
+							<td><input type="text" name="address" size="50" value="110 Rancho Todos Santos Road" disabled title="The optional address for the course. The scorecard must be unlocked in order to change this value."></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">City:</td>
+							<td><input type="text" name="city" size="50" value="Watsonville" disabled title="The optional city for the course. The scorecard must be unlocked in order to change this value."></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">State or Province:</td>
+							<td><input type="text" name="city" size="50" value="CA" disabled title="The optional state or province for the course. The scorecard must be unlocked in order to change this value."></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">ZIP Code:</td>
+							<td><input type="text" name="city" size="50" value="95077" disabled title="The optional ZIP code for the course. The scorecard must be unlocked in order to change this value."></td>
+						</tr>
+						<tr>
+							<td style="text-align: right;">DGCourseReview Link:</td>
+							<td><div title="The optional URL for the course on DGCourseReview. The scorecard must be unlocked in order to change this value."><a href="https://www.dgcoursereview.com/course.php?id=3107">https://www.dgcoursereview.com/course.php?id=3107</a></div></td>
+						</tr>
+					</table>
+				</fieldset>
+			</form>
+		</div>
+			<table id="scorecard">
+				<thead>
+					<tr id="labels-row">
+						<td>Hole #</td>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+						<td>8</td>
+						<td>9</td>
+						<td>10</td>
+						<td>11</td>
+						<td>12</td>
+						<td>13</td>
+						<td>14</td>
+						<td>15</td>
+						<td>16</td>
+						<td>17</td>
+						<td>18</td>
+						<td>14a</td>
+						<td>Total</td>
+					</tr>
+					<tr id="par-row">
+						<td>Par</td>
+						<td class="par">
+							<div style="display:none;">Hole 1</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 2</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 3</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 4</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 5</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 6</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 7</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 8</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 9</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 10</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 11</div>
+							<div>5</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 12</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 13</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 14</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 15</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 16</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 17</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 18</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par">
+							<div style="display:none;">Hole 14a</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="par-sum">56</td>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr id="buttons-row">
+						<td id="player-buttons">
+							<button type="button" title="Shift the midpoint to the left.">&lt;&lt;&lt; Shift</button>
+							<button type="button" title="Shift the midpoint to the right.">Shift &gt;&gt;&gt;</button>
+						</td>
+						<td colspan="20">
+							<button type="button" id="save-button" title="Save the scorecard to the server.">Save</button>
+						</td>
+					</tr>
+						<td id="course-notes-label">
+							<label for="course-notes">Notes</label>
+						</td>
+						<td id="course-notes" colspan="20">
+							<textarea id="course-notes-input" rows="2" cols="72" placeholder="Enter any memorable thoughts about the course or round." title="Enter any memorable thoughts about the course or round.">Hole #11 was 1288 feet long.  We needed the new disc retriever on the 18th hole to retrieve a disc that Joel put in a tree.</textarea>
+						</td>
+					</tr>
+					<tr id="scorecard-id-row">
+						<td colspan="21">Scorecard ID: <span id="scorecard-id" title="Unique ID value for this scorecard.">JoelJimRounds_20200111_140224977_854977</span>
+						</td>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr>
+						<td>
+							<input class="player-name-input" placeholder="Player 1" type="text" value="Joel" title="Player 1.">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 1</div>
+							<div>2</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 2</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 3</div>
+							<div>5</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 4</div>
+							<div>5</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 5</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 6</div>
+							<div>7<sup>bb</sup></div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 7</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 8</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 9</div>
+							<div>3<sup>m</sup></div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 10</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 11</div>
+							<div>8</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 12</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 13</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 14</div>
+							<div>6</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 15</div>
+							<div>4<sup>m</sup></div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 16</div>
+							<div>5</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 17</div>
+							<div>2</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 18</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 14a</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score-sum">80<sup>bbmm</sup>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="player-name-input" placeholder="Player 2" type="text" value="Jim" title="Player 2">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 1</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 2</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 3</div>
+							<div>7</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 4</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 5</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 6</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 7</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 8</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 9</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 10</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 11</div>
+							<div>8</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 12</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 13</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 14</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 15</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 16</div>
+							<div>7<sup>b</sup></div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 17</div>
+							<div>3</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 18</div>
+							<div>5</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 14a</div>
+							<div>4</div>
+							<input type="text" style="display: none;">
+						</td>
+						<td class="score-sum">81<sup>b</sup>
+						</td>
+					</tr>
+					<tr id="buttons-row">
+						<td id="player-buttons">
+							<button type="button" title="Add a new row for a new player.">Add Player</button>
+							<button type="button" title="Remove the bottom row in the list of players.">Remove Player</button>
+						</td>
+						<td colspan="20">
+							<button type="button" id="save-button" title="Save the scorecard to the server.">Save</button>
+						</td>
+					</tr>
+					<tr id="cumulative-score-separator">
+						<td colspan="21">Cumulative Scores:
+						</td>
+					</tr>
+					<tr class="cumulative-score-row">
+						<td>Joel</td>
+						<td class="score">
+							<div style="display:none;">Hole 1</div>
+							2
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 2</div>
+							6
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 3</div>
+							11
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 4</div>
+							16
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 5</div>
+							20
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 6</div>
+							27<sup>bb</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 7</div>
+							31<sup>bb</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 8</div>
+							35<sup>bb</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 9</div>
+							38<sup>bbm</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 10</div>
+							42<sup>bbm</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 11</div>
+							50<sup>bbm</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 12</div>
+							53<sup>bbm</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 13</div>
+							56<sup>bbm</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 14</div>
+							62<sup>bbm</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 15</div>
+							66<sup>bbmm</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 16</div>
+							71<sup>bbmm</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 17</div>
+							73<sup>bbmm</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 18</div>
+							77<sup>bbmm</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 14a</div>
+							80<sup>bbmm</sup>
+						</td>
+						<td class="score-sum">80<sup>bbmm</sup>
+						</td>
+					</tr>
+					<tr class="cumulative-score-row">
+						<td>Jim</td>
+						<td class="score">
+							<div style="display:none;">Hole 1</div>
+							3
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 2</div>
+							6
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 3</div>
+							13
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 4</div>
+							16
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 5</div>
+							19
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 6</div>
+							23
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 7</div>
+							27
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 8</div>
+							30
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 9</div>
+							34
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 10</div>
+							38
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 11</div>
+							46
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 12</div>
+							50
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 13</div>
+							54
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 14</div>
+							58
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 15</div>
+							62
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 16</div>
+							69<sup>b</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 17</div>
+							72<sup>b</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 18</div>
+							77<sup>b</sup>
+						</td>
+						<td class="score">
+							<div style="display:none;">Hole 14a</div>
+							81<sup>b</sup>
+						</td>
+						<td class="score-sum">81<sup>b</sup>
+						</td>
+					</tr>
+					<tr id="cumulative-midpoint-separator">
+						<td colspan="21">Cumulative Scores With Midpoint:
+						</td>
+					</tr>
+					<tr class="cumulative-midpoint-row">
+						<td>Joel</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 1</div>
+							2
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 2</div>
+							6
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 3</div>
+							11
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 4</div>
+							16
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 5</div>
+							20
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 6</div>
+							27<sup>bb</sup>
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 7</div>
+							31<sup>bb</sup>
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 8</div>
+							35<sup>bb</sup>
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 9</div>
+							38<sup>bbm</sup>
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 10</div>
+							4
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 11</div>
+							12
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 12</div>
+							15
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 13</div>
+							18
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 14</div>
+							24
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 15</div>
+							28<sup>m</sup>
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 16</div>
+							33<sup>m</sup>
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 17</div>
+							35<sup>m</sup>
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 18</div>
+							39<sup>m</sup>
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 14a</div>
+							42<sup>m</sup>
+						</td>
+						<td class="score-sum">80<sup>bbmm</sup>
+						</td>
+					</tr>
+					<tr class="cumulative-midpoint-row">
+						<td>Jim</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 1</div>
+							3
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 2</div>
+							6
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 3</div>
+							13
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 4</div>
+							16
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 5</div>
+							19
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 6</div>
+							23
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 7</div>
+							27
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 8</div>
+							30
+						</td>
+						<td class="cumulative-midpoint-left-score score">
+							<div style="display:none;">Hole 9</div>
+							34
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 10</div>
+							4
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 11</div>
+							12
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 12</div>
+							16
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 13</div>
+							20
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 14</div>
+							24
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 15</div>
+							28
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 16</div>
+							35<sup>b</sup>
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 17</div>
+							38<sup>b</sup>
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 18</div>
+							43<sup>b</sup>
+						</td>
+						<td class="cumulative-midpoint-right-score score">
+							<div style="display:none;">Hole 14a</div>
+							47<sup>b</sup>
+						</td>
+						<td class="score-sum">81<sup>b</sup>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<br/>
+		<div>
+			<table border="1">
+				<tr>
+					<td style="vertical-align: top;" title="Highlight the scores according to the selected criteria.">
+						<div style="font-weight: bold;">Highlighting:</div>
+						<form>
+							<input type="radio" name="highlighting" value="None" checked="true">None<br/>
+							<input type="radio" name="highlighting" value="Pars">Pars<br/>
+							<input type="radio" name="highlighting" value="Under Pars">Under Pars<br/>
+							<input type="radio" name="highlighting" value="Over Pars">Over Pars<br/>
+							<input type="radio" name="highlighting" value="Eagles">Eagles<br/>
+							<input type="radio" name="highlighting" value="Birdies">Birdies<br/>
+							<input type="radio" name="highlighting" value="Bogies">Bogies<br/>
+							<input type="radio" name="highlighting" value="Double Bogies">Double Bogies<br/>
+							<input type="radio" name="highlighting" value="Triple Bogies">Triple Bogies<br/>
+							<input type="radio" name="highlighting" value="Quadruple Bogies">Quadruple Bogies or worse <br/>
+							<input type="radio" name="highlighting" value="Hole Winners">Hole Winners<br/>
+							<input type="radio" name="highlighting" value="Running Winner">Running Score Winner<br/>
+							<input type="radio" name="highlighting" value="Running Ties">Running Score Ties<br/>
+						</form>
+					</td>
+					<td style="vertical-align: top;">
+						<table>
+							<tr>
+								<td colspan="2">
+									<div style="font-weight: bold;">Scorecard Settings:</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button type="button" title="Lock the scorecard so no structural changes are possible.">Lock</button>
+								</td>
+								<td>
+									<button type="button" title="Unlock the scorecard so structure changes may be made, such as changing the number of holes or the course information.">Unlock</button>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">&nbsp;
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<div style="font-weight: bold;">Change Number of Holes:</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button type="button" title="Remove the rightmost hole on the scorecard. The scorecard must be unlocked in order to change this value.">Remove Hole</button>
+								</td>
+								<td>
+									<button type="button" title="Add a new hole onto the rightmost side of the scorecard. The scorecard must be unlocked in order to change this value.">Add Hole</button>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="resources-label">Disc Golf Resources:</div>
+		<ul>
+			<li>
+				<a href="https://www.dgcoursereview.com/">DGCourseReview.com</a> – Has lots of information on disc golf courses everywhere.
+			</li>
+			<li>
+				<a href="http://www.inboundsdiscgolf.com/">Inbounds Disc Golf</a> – Has a comparison of the various types of discs.
+			</li>
+		</ul>
+		<p id="copyright">Copyright &copy; 2014–2020 Jim &amp; Joel Kottas.  All rights reserved.</p>
+<!--
+		<script src="js/jquery/jquery-3.4.1.min.js"/>
+		<script src="js/scorecard.js"/>
+		<script src="js/courses.js"/>
+		<noscript>You must have Javascript enabled for this to work.</noscript>
+-->
+	</body>
+</html>

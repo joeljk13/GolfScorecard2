@@ -1,0 +1,42 @@
+# WinSCP script to copy/update the files in the production and development areas
+# on CJ3.org for the Golf Scorecard 2 stuff.
+# Execute this script using:
+#       winscp.com /script=".\winscp_publish_script.txt"
+#
+# For reference, the URL destinations on CJ3.org are as follows:
+#    Production:    sftp://jkottas@cj3.org:2222/home1/jkottas/public_html/gsc2
+#    Development:   sftp://jkottas@cj3.org:2222/home1/jkottas/public_html/gsc2_dev
+
+# Connect.  This will require the password for the jkottas account.
+open sftp://jkottas@cj3.org:2222/
+
+# Change the remote directory.
+cd "/home1/jkottas/public_html"
+
+# Change the local directory.
+lcd "C:\Home\Jim\GitProjects\GolfScorecard2"
+
+# Update the production files from the local copy to CJ3.org.
+put -transfer=automatic -neweronly  ".\src\.htaccess"    "./gsc2/"
+put -transfer=automatic -neweronly  ".\src\favicon.ico"  "./gsc2/"
+put -transfer=automatic -neweronly  ".\src\main.html"    "./gsc2/"
+put -transfer=automatic -neweronly  ".\src\robots.txt"   "./gsc2/"
+
+synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\src\css"   "./gsc2/css"
+synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\src\js"    "./gsc2/js"
+synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\src\lib"   "./gsc2/lib"
+synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\src\api"   "./gsc2/api"
+synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\src\data\courses"  "./gsc2/data/courses"
+
+# Download the scorecards from CJ3.org to back them locally within the development area.
+synchronize local -transfer=automatic -criteria=either -mirror ".\src\data\scorecards"  "./gsc2/data/scorecards"
+
+# Update the development files from the local development area to CJ3.org.
+synchronize remote -transfer=automatic -criteria=either -mirror -delete .  "./gsc2_dev"
+
+
+# Disconnect.
+close
+
+# Exit WinSCP.
+exit

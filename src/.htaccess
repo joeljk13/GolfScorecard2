@@ -1,0 +1,13 @@
+# Set the default file.
+DirectoryIndex main.html
+
+# For the REST API URLs to work properly, the Rewrite engine needs to be turned on
+# so that the REST URLs are reformatted into a traditional form for PHP to process
+# correctly.
+RewriteEngine On
+RewriteRule ^api/([^/]+)/([^/]+)/?$ api/gsc2api.php?type=$1&id=$2 [NC,L]
+
+# If the request is a file, folder or symlink that exists, serve it up.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]

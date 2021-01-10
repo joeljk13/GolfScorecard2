@@ -1,0 +1,519 @@
+/*
+ * gsc2app.css
+ *
+ * Defines the styles used in the Golf Scorecard 2 web site.  The styles are divided up into two
+ * groups: Standalone (non-BEM) and BEM (Block__Element--Modifier; described at http://getbem.com).
+ * The Standalone styles are for elements where context doesn't matter.  The BEM styles are for
+ * when context matters, which is most of the BackboneJS-rendered views.
+ *
+ * Copyright (c) 2014-2021 Jim and Joel Kottas.  All rights reserved.
+ */
+
+/*
+ * Standalone Styles
+ */
+
+noscript {}
+
+.not-implemented-yet {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  font-size: larger;
+}
+
+
+
+/*
+ * Block-Element-Modifier (BEM) Styles
+ */
+
+.overallcontainer {
+  /* font-family: Arial, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: 'Times New Roman', Times, serif;
+}
+.overallcontainer--initialstate { display: none; }
+
+.outercontainer {}
+
+.outercontainer__title {
+  padding: 0px;
+  width: 100%;
+}
+
+.outercontainer__pageheader {
+  text-align: left;
+  background-color: lightblue;
+}
+.outercontainer__pageheader--initialstate { display: none; }
+
+.outercontainer__userspacearea {}
+.outercontainer__userspacearea--initialstate { display: none; }
+
+.outercontainer__commandarea {}
+.outercontainer__commandarea--initialstate { display: none; }
+
+.outercontainer__courseselectorarea {}
+.outercontainer__courseselectorarea--initialstate { display: none; }
+
+.outercontainer__scorecardmgmtarea {}
+.outercontainer__scorecardmgmtarea--initialstate { display: none; }
+
+.outercontainer__coursemgmtarea {}
+.outercontainer__coursemgmtarea--initialstate { display: none; }
+
+.outercontainer__scorecardarea {}
+.outercontainer__scorecardarea--initialstate { display: none; }
+
+.outercontainer__resourcesarea {}
+.outercontainer__resourcesarea--initialstate {}
+.resourcesarea--label {
+  margin-top: 1em;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.outercontainer__copyrightarea {}
+.outercontainer__copyrightarea--initialstate {}
+
+
+.innercontainer {}
+.innercontainer__title {
+  padding: 0px;
+  width: 100%;
+}
+
+.innercontainer__copyright {
+  margin-top: 1em;
+  font-size: smaller;
+  font-style: italic;
+}
+
+
+.contentcontainer {}
+.contentcontainer__title {
+  padding: 0px;
+  vertical-align: text-bottom;
+  width: 100%;
+}
+.contentcontainer__date {
+  text-align: right;
+  vertical-align: text-bottom;
+}
+
+.title {}
+.title__programname {
+  font-size: x-large;
+  font-weight: bold;
+}
+.title__programversion {
+  font-size: smaller;
+  font-style: italic;
+}
+
+.scorecardinfocontainer {
+  background-color: #CCFFFF;
+  text-align: left;
+}
+.scorecardinfocontainer__scorecardid {
+  font-size: smaller;
+  font-style: normal;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.scorecardinfocontainer__scorecardid--label {
+  font-style: italic;
+  font-weight: normal;
+}
+.pageheadercontainer__table {
+  width: 100%;
+  vertical-align: baseline;
+}
+
+.pageheaderarea__text {
+  font-weight: bold;
+  font-size: larger;
+  text-align: left;
+}
+.pageheaderarea__links {
+  text-align: right;
+  font-size: smaller;
+  font-family: sans-serif;
+}
+.pageheaderarea__links--visible {
+  display: inline;
+}
+.pageheaderarea__links--hidden {
+  display: none;
+}
+
+.userspaceform {}
+.userspaceform__promptlabel {}
+.userspaceform__textinput {}
+
+.logicalpagecontainer {
+  width: 100%;
+}
+.logicalpagecontainer__userspacearea {}
+.logicalpagecontainer__commandarea {}
+.logicalpagecontainer__scorecarddata {
+  margin-top: 1em;
+  border: 2px solid;
+  border-color: black !important;
+  text-align: center;
+  width: max-content;
+}
+.logicalpagecontainer__scorecardstats {
+  margin-top: 1em;
+  border: 2px solid;
+  border-color: black !important;
+  text-align: center;
+  width: auto;
+}
+.logicalpagecontainer__selectcoursearea {}
+
+.commandarea {}
+.commandarea__outercell {
+  width: 33%;
+  text-align: center;
+}
+.commandarea__innercell {
+  text-align: center;
+}
+
+.mybutton {
+  border-radius: 1em;
+  text-align: center;
+}
+.mybutton__command {
+  width: 95%;
+  padding: 5px;
+}
+.mybutton__submit {
+  width: 6em;
+}
+.mybutton__select {
+  width: 6em;
+}
+.mybutton__playerops {
+  margin: 2px;
+}
+.mybutton__playerops--add {
+  height: 1.75em;
+  width: 55%;
+}
+.mybutton__playerops--remove {
+  font-size: 8pt;
+  width: 35%;
+}
+.mybutton__save {
+  height: 1.75em;
+  width: 96%;
+  margin: 2px;
+}
+
+.selectcoursearea {}
+.selectcoursearea__groupheading {
+  font-weight: bold;
+}
+.selectcoursearea__label {
+  text-align: left;
+  padding-right: 5px;
+  padding-left: 5px;
+  vertical-align: top;
+}
+.selectcoursearea__value {
+  text-align: left;
+  vertical-align: top;
+}
+.selectcoursearea__value--notes {
+  text-align: left;
+  vertical-align: top;
+  padding: 0px;
+  margin: 0px;
+}
+
+.courseviewarea {}
+.courseviewarea__form {
+  width: max-content;
+}
+.courseviewarea__groupheading {
+  font-weight: bold;
+}
+.courseviewarea__label {
+  text-align: left;
+  padding-right: 5px;
+  padding-left: 5px;
+  vertical-align: top;
+}
+.courseviewarea__value {
+  text-align: left;
+  vertical-align: top;
+}
+
+.scorecarddata {
+  padding: 2px;
+  margin: 0px;
+  border: 1px solid;
+  border-color: black !important;
+}
+.scorecarddata__heading {
+  min-width: 10em;
+}
+.scorecarddata__holenumbers {
+  text-align: center;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+}
+.scorecarddata__holenumbers--total {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+.scorecarddata__holepars {
+  text-align: center;
+  font-weight: bold;
+  background-color: #FFCC66;
+  color: black;
+}
+
+.scorecardstats {
+  padding: 2px;
+  margin: 0px;
+  border: 1px solid;
+  border-color: black !important;
+}
+.scorecardstats__heading {
+  min-width: 10em;
+  vertical-align: bottom;
+  font-weight: bold;
+  background-color: antiquewhite; /* rgb(235, 222, 205); /* burlywood /* #FFCC66;*/
+  color: black;
+}
+.scorecardstats__titlerow {
+  text-align: center;
+  font-weight: bold;
+  background-color: darkblue;
+  color: white;
+}
+.scorecardstats__statnames {
+  text-align: center;
+  vertical-align: bottom;
+  font-weight: bold;
+  background-color: antiquewhite; /* rgb(235, 222, 205); /* burlywood /* #FFCC66;*/
+  color: black;
+  min-width: 5em;
+}
+.scorecardstats__playerrow {}
+.scorecardstats__playername {
+  background-color: white;
+  color: black;
+  text-align: left;
+  min-height: 1em;
+  font-weight: normal;
+}
+.scorecardstats__playername--display {
+  min-width: 10em;
+  border: none;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+  background-color: #eeeeee;
+}
+.scorecardstats__statvalues {
+  text-align: center;
+}
+.scorecardstats__statvalues--display {
+  width: 90%;
+  min-height: 1em;
+  border: none;
+}
+
+.holedatacontainer {
+  min-width: 3ch;
+  min-height: 1em;
+  padding: 2px;
+  margin: 0px;
+  border: 1px solid;
+  border-color: gray !important;
+}
+.holedatacontainer--total {
+  min-width: 3ch;
+  min-height: 1em;
+  padding: 2px;
+  margin: 0px;
+  background-color: lightgray;
+  border: 1px solid;
+  border-color: gray !important;
+}
+.holedata {
+  min-height: 1em;
+  padding: 0px;
+  margin: 0px;
+}
+.holedata--display {
+  min-width: 3ch;
+}
+.holedata--input {
+  width: 4em;
+}
+.holedata__holenumber {}
+.holedata__holenumber--display {
+  padding-left: 0.05em;
+  padding-right: 0.05em;
+}
+.holedata__holenumber--input {}
+.holedata__parvalue {}
+.holedata__parvalue--display {
+  padding-left: 0.05em;
+  padding-right: 0.05em;
+}
+.holedata__parvalue--input {}
+.holedata__parvalue--total {
+  font-weight: bold;
+}
+.holedata__scorevalue {}
+.holedata__scorevalue--display {
+  padding-left: 0.05em;
+  padding-right: 0.05em;
+}
+.holedata__scorevalue--input {}
+.holedata__scorevalue--total {
+  font-weight: bold;
+}
+/* Hole score visual highlight styles */
+.holedata__highlight {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+}
+.holedata__highlight--none {
+  background-color: white;
+  color: black;
+  font-weight: normal;
+}
+.holedata__highlight--gotpar {
+  background-color: white;
+  color: black;
+  font-weight: normal;
+}
+.holedata__highlight--gotbirdie {
+  background-color: lightgreen;
+  color: black;
+  font-weight: normal;
+}
+.holedata__highlight--goteagleorbetter {
+  background-color: silver;
+  color: black;
+  font-weight: normal;
+}
+.holedata__highlight--gotholeinone {
+  background-color: gold;
+  color: black;
+  font-weight: bold;
+}
+.holedata__highlight--gotbogey {
+  background-color: yellow;
+  color: black;
+  font-weight: normal;
+}
+.holedata__highlight--gotdoublebogey {
+  background-color: lightpink;
+  color: black;
+  font-weight: normal;
+}
+.holedata__highlight--gottriplebogeyorworse {
+  background-color: red;
+  color: white;
+  font-weight: normal;
+}
+
+.scorecardheadingcolumn {
+  text-align: left;
+  padding: 2px;
+  margin: 0px;
+  min-height: 1em;
+  border: 1px solid;
+  border-color: gray !important;
+}
+.scorecardheadingcolumn__playername--container {
+  width: 100%;
+}
+.scorecardheadingcolumn__playername--display {
+  width: 96%;
+  min-height: 1em;
+  border: none;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+}
+.scorecardheadingcolumn__playername--input {
+  width: 96%;
+  border: none;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+}
+
+.coursecommands {
+  vertical-align: middle;
+}
+.coursecommands__playerops {
+  border: 1px solid;
+  border-color: black !important;
+  background-color: #CCFFFF;
+}
+.coursecommands__saveops {
+  border: 1px solid;
+  border-color: black !important;
+  background-color: #CCFFFF;
+}
+.coursecommands__saveops--status {
+  border: 1px solid;
+  border-color: black !important;
+  background-color: #CCFFFF;
+}
+
+.coursenotes__rowcontainer {}
+.coursenotes {
+  border: 1px solid;
+  border-color: black !important;
+}
+.coursenotes__label {
+  font-weight: bold;
+  background-color: #CCFFFF;
+}
+.coursenotes__inputarea {
+  min-height: 2em;
+  width: 100%;
+  vertical-align: center;
+  background-color: #CCFFFF;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+}
+.coursenotes__inputarea--input {
+  border: 1px solid;
+  border-color: gray !important;
+  resize: none;
+  height: 5em;
+  width: 96%;
+  color: black;
+  background-color: white;
+}
+
+
+
+
+
+/*
+ * Legacy Styles, to be deleted eventually.
+ */
+
+
+.hidden {
+  display: none;
+}
+
+#buttons-row {
+    background-color: #CCFFFF;
+    width: 100%;
+    vertical-align: middle;
+}

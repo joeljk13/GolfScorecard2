@@ -1,0 +1,5 @@
+/* JSHint configuration settings for all JavaScript files in this directory. */
+{
+    "esversion": 8,     // JavaScript ES8 released 2018
+    "multistr": true
+}
