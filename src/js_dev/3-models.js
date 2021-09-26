@@ -528,7 +528,7 @@ var gsc2app = gsc2app || {};
 	 * let isValid2 = gsc2app.Models.isScoreRankingLevelValid("bogeys-are-bad");
 	 * // isValid2 is set to false.
 	 * @param {string} rankLevel - The input rank level to test for validity.
-	 * @returns {boolea} Returns true if rankLevel is valid, false if not.
+	 * @returns {boolean} Returns true if rankLevel is valid, false if not.
 	 * @see {@link gsc2app.Models.ScoreRankingsEnum}
 	 */
 	gsc2app.Models.isScoreRankingLevelValid = function(rankLevel) {
