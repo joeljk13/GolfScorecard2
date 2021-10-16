@@ -1,11 +1,6 @@
 tags
 .*.swp
-/build/sri_hashes.txt
-/doc/jsdoc_out/*
-/src/api/*
-/src/css/*
+/out
 /src/data/courses/old
-/src/data/scorecards/*
-/src/js/*
-/src/main.html
+/src/data/scorecards
 /tmp

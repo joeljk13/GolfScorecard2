@@ -56,7 +56,6 @@ var gsc2app = gsc2app || {};
 	gsc2app.ServerAPI.makeServerApiUrl = function(objectType, objectID) {
 		//@@graph{'graphid':"softarch1", 'nodename':"gsc2app.ServerAPI.makeServerApiUrl", 'nodetype':"function", 'group':"gsc2app.ServerAPI", 'datatype':"node"}
 		let api_path = 'api';
-		/*DEV*/api_path += '_dev';
 		let full_url = gsc2app.ServerAPI.baseURL + `${api_path}/${objectType}/${objectID}`;
 		return full_url;
 	};

@@ -20,19 +20,25 @@ Notes for improvements and changes to do for GolfScorecard2:
 7.  Look at WebPack at webpack.js.org/comparison to see if it can be used to combine and minimize
     groups of files.  It could replace my batch file or part of it.
 
-8.  Refactor the directory structure so that the output files are generated in a top-level .\dist
-    directory.  This is what jQuery uses.  This means, for example:
-        .\src\js_dev\   ==>     .\src\js\
-        .\src\js\       ==>     .\dist\js\
-    This means that the generated files are moved outside of .\src and into .\dist.  That way, .\src
-    only has source files and not gnerated output files.
-
 9.  Update all third party libraries that have updates.  Update NodeJS and its libraries, too.
 
 10. Look at GruntJS (gruntjs.com) for replacing Windows batch files with something more popular.
 
-11. Transform the Windows batch file to build everything into a make file.  There is an existing make
-    file in the source tree, so simply update it.
+11. Transform the Windows batch file to build everything into a makefile.  There is an existing
+    makefile in the source tree, so simply update it.
 
 12. Bug: The attributes in the Total column are not sorted alphabetically.  So 3^{bm} can appear attributes
     3*{mb} in the Total column.
+
+
+
+DONE LIST
+=========
+
+8.  Refactor the directory structure so that the output files are generated in a top-level .\out\dist
+    directory.  This is what jQuery uses.  This means, for example:
+        .\src\js_dev\   ==>     .\src\js\
+        .\src\js\       ==>     .\out\dist\js\
+    This means that the generated files are moved outside of .\src and into .\out\dist.  That way,
+	.\src only has source files and not generated output files.
+

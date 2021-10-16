@@ -61,18 +61,15 @@
  *      https://gsc2server.com/api/gsc2api.php?type=<object-name>&id=<object-id>
  * 
  * Note that for development, the URLs are:
- *      https://gsc2server.com/api_dev/<object-name>/<object-id>
+ *      https://gsc2server.com/api/<object-name>/<object-id>
  * and
- *      https://gsc2server.com/api_dev/gsc2api.php?type=<object-name>&id=<object-id>
+ *      https://gsc2server.com/api/gsc2api.php?type=<object-name>&id=<object-id>
  * 
  * For example, if the web server is hosted locally on port 8443, the URL:
  *      https://localhost:8443/api/scorecard/15ee1cfb_20201221_224516348_445649
  * 
  * must be mapped to:
  *      https://localhost:8443/api/gsc2api.php?type=scorecard&id=15ee1cfb_20201221_224516348_445649
- * 
- * If development is done on this server, then the /api path must be replaced with
- * /api_dev in these URLs.
  * 
  * The HTTP verb will indicate what action is being requested.  For example, an
  * HTTP GET request using the example scorecard URL will retrieve the data for the
@@ -95,22 +92,27 @@
  * 
  * Create a virtual directory called DevGolfScorecard2 and have it point to
  * "C:\Home\Jim\GitProjects\GolfScorecard2\src".  This means the development form of
- * the Golf Scorecard 2 will be available at https://localhost/DevGolfScorecard2/main_dev.html.
+ * the Golf Scorecard 2 will be available at https://localhost/DevGolfScorecard2/main.html.
  * Make sure to enable TLS/SSL, even on localhost.
  * 
- * Enable daily logging for this virtual directory in the Logging module.  Enable all
+ * For production testing, create another virtual directory called GolfScorecard2 and have
+ * it point to "C:\Home\Jim\GitProjects\GolfScorecard2\out\dist".  This means the production
+ * form of the Golf Scorecard 2 will be available at https://localhost/GolfScorecard2/main.html.
+ * Make sure to enable TLS/SSL again, even on localhost.
+ * 
+ * Enable daily logging for both virtual directories in the Logging module.  Enable all
  * fields except for Cookie and Referrer.
  * 
- * Configure the IIS URL Rewrite module to allow for RESTful URLs to be used for the
- * server-side API calls used for development.  To do this, create a new URL Rewrite
- * Inbound Rule with the following settings:
- *      Name:                           GSC2API Dev Rewriter
+ * Configure the IIS URL Rewrite module for both virtual directories to allow for RESTful
+ * URLs to be used for the server-side API calls used for development.  To do this, create
+ * a new URL Rewrite Inbound Rule with the following settings:
+ *      Name:                           GSC2API Rewriter
  *      Match URL
  *          Requested URL:              Matches the Pattern
  *          Using:                      Regular Expressions
- *          Pattern:                    ^api_dev/([^/]+)/([^/]+)/?$
+ *          Pattern:                    ^api/([^/]+)/([^/]+)/?$
  *          Ignore case:                checked
- *          Test pattern with:          api_dev/scorecard/15ee1cfb_20201221_224516348_445649
+ *          Test pattern with:          api/scorecard/15ee1cfb_20201221_224516348_445649
  *      Conditions
  *          Logical Grouping:           Match All
  *              #1
@@ -128,7 +130,7 @@
  *      Action
  *          Action Type:                Rewrite
  *          Action Properties
- *              Rewrite URL:            api_dev/gsc2api.php?type={R:1}&id={R:2}
+ *              Rewrite URL:            api/gsc2api.php?type={R:1}&id={R:2}
  *              Append query string:    checked
  *              Log rewritten URL:      checked
  *          Stop processing of
