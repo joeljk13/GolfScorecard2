@@ -1,6 +1,7 @@
 tags
 .*.swp
 /out
+/out2
 /src/data/courses/old
 /src/data/scorecards
 /tmp
