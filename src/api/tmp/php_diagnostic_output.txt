@@ -517,3 +517,11 @@ Variable '$requestData':
 Context: Scorecard output filename
 Variable '$filename':
 '../data/scorecards/15ee1cfb_20220620_224723346_821682.json'
+
+Context: Course List input filename
+Variable '$filename':
+'../data/courses/course_list_15ee1cfb.json'
+
+Context: Course List input filename
+Variable '$filename':
+'../data/courses/course_list_54c342d1.json'
