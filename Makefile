@@ -607,8 +607,15 @@ showvars:
 
 test:
 	echo Test done
+	
+analyze: 09_api
+	$(ECHO) Analyzing the pre-build PHP source code files
+	$(CURRENT_DIR)/vendor/bin/phpstan analyse --level 9 $(SRC_DIR_API)
+	$(ECHO) Analyzing the post-build PHP source code files
+	$(CURRENT_DIR)/vendor/bin/phpstan analyse --level 9 $(OUTPUT_DIR_DIST_API)
+	$(ECHO) ===== PHP source code analysis done
 
-.PHONY: all clean showvars intro test \
+.PHONY: all clean showvars intro test analyze \
 		01_js_diags \
 		02_js_minimizer \
 		03_js_combiner \

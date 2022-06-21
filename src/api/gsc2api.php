@@ -32,10 +32,13 @@ The key arguments are available in the following PHP variables:
     $_REQUEST['type']               Contains the <object-name>.
     $_REQUEST['id']                 Contains the <object-id>.
 
-GSC2API Version 0.1.0 1/1/2021
-Copyright (c) 2020-2021 Jim & Joel Kottas.  All rights reserved.
+GSC2API Version 0.1.1 6/20/2022
+Copyright (c) 2020-2022 Jim & Joel Kottas.  All rights reserved.
 
 ======================================================================================*/
+
+// For clean code, make sure functions specify return types.
+declare(strict_types=1);
 
 // Prepare the JSON response output that will be returned to the caller.
 header("Content-Type: application/json");
@@ -57,13 +60,13 @@ $last_code = http_response_code(400);
 //
 
 // The setResponseOutputs() function saves the specified output fields in the
-// $response array.
+// $response array.  The function returns true.
 function setResponseOutputs(
-    $httpStatusCode/*integer*/,
-    $statusResult/*boolean*/,
-    $message/*string*/,
-    $responseData/*string*/,
-    $id = ''/*string*/)
+    int $httpStatusCode,
+    bool $statusResult,
+    string $message,
+    string $responseData,
+    string $id = ''): bool
 {
     global $response;
     $last_code = http_response_code($httpStatusCode);
@@ -74,11 +77,13 @@ function setResponseOutputs(
         'data' => $responseData,
         'id' => ($id !== '' ? $id : $last_id)
     );
+    return true;
 }
 
 // The isValidID() function returns true if $id is valid, otherwise false if it
 // has suspicious characters.
-function isValidID($id) {
+function isValidID(string $id): bool
+{
     if (!$id || preg_match('/[^a-zA-Z0-9_]/', $id) === 1) {
         // The ID is null, empty, or it contains an invalid character.
         return false;
@@ -94,36 +99,47 @@ function isValidID($id) {
 }
 
 // The saveDiagnosticOutput() function writes the contents of the given variable
-// to the diagnostic output file, appending the results to the file.
-function saveDiagnosticOutput($varname/*string*/, $var, $context='') {
-    $file = null;
-    $diagnostic_dir = './tmp';
-    try {
-        if (file_exists($diagnostic_dir) && is_dir($diagnostic_dir)) {
-            $file = fopen("$diagnostic_dir/php_diagnostic_output.txt", "a");
-            fwrite($file, "\n");
-            if ($context !== '') {
-                fwrite($file, "Context: $context\n");
-            }
-            fwrite($file, "Variable '$varname':\n");
-            $var_string_export = var_export($var, true);
-            fwrite($file, $var_string_export);
-            fwrite($file, "\n");
-        }
-    }
-    catch (Exception $e) {
-        // For now, ignore errors when writing diagnostic output.
-    }
-    finally {
-        if (!is_null($file)) {
-            fclose($file);
-        }
-    }
-}
+// to the diagnostic output file, appending the results to the file.  Returns
+// true if successful, false if an error occurred.
+// NOTE: PHP 7.4 does not support the type "mixed".
+/*DEV*/ function saveDiagnosticOutput(string $varname, /*mixed*/ $var, string $context = ''): bool
+/*DEV*/ {
+/*DEV*/     $file = null;
+/*DEV*/     $diagnostic_dir = './tmp';
+/*DEV*/     try {
+/*DEV*/         if (file_exists($diagnostic_dir) && is_dir($diagnostic_dir)) {
+/*DEV*/             $file = fopen("$diagnostic_dir/php_diagnostic_output.txt", "a");
+/*DEV*/             if (($file !== false) && (is_resource($file) === true)) {
+/*DEV*/                 fwrite($file, "\n");
+/*DEV*/                 if ($context !== '') {
+/*DEV*/                     fwrite($file, "Context: $context\n");
+/*DEV*/                 }
+/*DEV*/                 fwrite($file, "Variable '$varname':\n");
+/*DEV*/                 $var_string_export = var_export($var, true);
+/*DEV*/                 fwrite($file, $var_string_export);
+/*DEV*/                 fwrite($file, "\n");
+/*DEV*/             } else {
+/*DEV*/                 $file = null;
+/*DEV*/                 throw new Exception('Could not open diagnostic output file for writing');
+/*DEV*/             }
+/*DEV*/         }
+/*DEV*/         return true;
+/*DEV*/     }
+/*DEV*/     catch (Exception $e) {
+/*DEV*/         // For now, ignore errors when writing diagnostic output.
+/*DEV*/         return false;
+/*DEV*/     }
+/*DEV*/     finally {
+/*DEV*/         if (!is_null($file)) {
+/*DEV*/             fclose($file);
+/*DEV*/         }
+/*DEV*/     }
+/*DEV*/ }
 
 // The getScorecard() function returns to the caller the JSON for the scorecard
-// corresponding to the given ID string in $id.
-function getScorecard($scorecard_id/*string*/) {
+// corresponding to the given ID string in $id.  The function returns true.
+function getScorecard(string $scorecard_id): bool
+{
     if ($scorecard_id === '') {
         throw new Exception('Empty ID field specified');
     }
@@ -131,18 +147,31 @@ function getScorecard($scorecard_id/*string*/) {
     /*DEV*/saveDiagnosticOutput('$filename', $filename, 'Scorecard input filename');
     if (file_exists($filename)) {
         $scorecard_data = file_get_contents($filename);
-        setResponseOutputs(200, true, "Found scorecard with ID '$scorecard_id'", $scorecard_data, $scorecard_id);
+        if ($scorecard_data !== false) {
+            setResponseOutputs(200, true, "Found scorecard with ID '$scorecard_id'", $scorecard_data, $scorecard_id);
+        } else {
+            setResponseOutputs(404, false, "Scorecard with ID '$scorecard_id' could not be loaded", '', $scorecard_id);
+        }
     } else {
         setResponseOutputs(404, false, "Scorecard with ID '$scorecard_id' not found", '', $scorecard_id);
     }
+    return true;
 }
 
 // The saveScorecard() function saves the scorecard, represented by the JSON data
-// in string form in $jsonData, with the given ID in $id.
-function saveScorecard($id/*string*/, $jsonData/*string*/) {
+// in string form in $jsonData, with the given ID in $id. The function returns true
+// and throws exceptions on error.
+function saveScorecard(string $id, string $jsonData): bool
+{
     // First parse the input JSON string and determine if the embedded scorecard
     // ID matches what was specified.
     $scorecardData = json_decode($jsonData, true);
+    if ($scorecardData === null) {
+        throw new Exception('Request input data is in an invalid format');
+    }
+    if (is_array($scorecardData) === false) {
+        throw new Exception('Request input data is not in a valid format');
+    }
     if (!array_key_exists('scorecard_id', $scorecardData)) {
         throw new Exception('Request input data is missing ID field');
     }
@@ -162,7 +191,12 @@ function saveScorecard($id/*string*/, $jsonData/*string*/) {
     $file_already_exists = file_exists($filename);
     try {
         $file = fopen($filename, 'w');
-        fwrite($file, "$scorecardDataPretty\n");
+        if (($file !== false) && (is_resource($file) === true)) {
+            fwrite($file, "$scorecardDataPretty\n");
+        } else {
+            $file = null;
+            throw new Exception('Could not open scorecard file for writing');
+        }
     }
     catch (Exception $e) {
         throw new Exception('Could not save scorecard data: ' . $e->getMessage());
@@ -175,12 +209,15 @@ function saveScorecard($id/*string*/, $jsonData/*string*/) {
     setResponseOutputs(200, true,
         ($file_already_exists ? 'Updated' : 'Saved') . " scorecard with ID '$id'", '',
         $scorecard_id);
+    return true;
 }
 
 
 // The getCourseList() function returns to the caller the JSON for the list
-// of courses defined for this user, as specified by the user ID.
-function getCourseList($user_id/*string*/) {
+// of courses defined for this user, as specified by the user ID.  The function
+// return true if successful, false if the course list could not be loaded.
+function getCourseList(string $user_id): bool
+{
     if ($user_id === '') {
         throw new Exception('Empty ID field specified');
     }
@@ -188,16 +225,24 @@ function getCourseList($user_id/*string*/) {
     /*DEV*/saveDiagnosticOutput('$filename', $filename, 'Course List input filename');
     if (file_exists($filename)) {
         $course_list_data = file_get_contents($filename);
-        setResponseOutputs(200, true, "Found course list for userspace ID '$user_id'", $course_list_data, $user_id);
+        if ($course_list_data !== false) {
+            setResponseOutputs(200, true, "Found course list for userspace ID '$user_id'", $course_list_data, $user_id);
+            return true;
+        } else {
+            setResponseOutputs(404, false, "Course list for userspace ID '$user_id' could not be loaded", '', $user_id);
+            return false;
+        }
     } else {
         setResponseOutputs(404, false, "Course list for userspace ID '$user_id' not found", '', $user_id);
+        return false;
     }
 }
 
 // The saveCourseList() function saves the list of courses for the user, as
 // represented by the JSON data in string form in $jsonData, for the user
-// with the given user ID in $user_id.
-function saveCourseList($user_id/*string*/, $jsonData/*string*/) {
+// with the given user ID in $user_id.  The function returns true.
+function saveCourseList(string $user_id, string $jsonData): bool
+{
     $courseListData = json_decode($jsonData, true);
     $courseListDataPretty = json_encode($courseListData, JSON_PRETTY_PRINT);
     $file = null;
@@ -206,7 +251,12 @@ function saveCourseList($user_id/*string*/, $jsonData/*string*/) {
     $file_already_exists = file_exists($filename);
     try {
         $file = fopen($filename, 'w');
-        fwrite($file, "$courseListDataPretty\n");
+        if (($file !== false) && (is_resource($file) === true)) {
+            fwrite($file, "$courseListDataPretty\n");
+        } else {
+            $file = null;
+            throw new Exception('Could not open course list file for writing');
+        }
     }
     catch (Exception $e) {
         throw new Exception('Could not save course list data: ' . $e->getMessage());
@@ -217,8 +267,9 @@ function saveCourseList($user_id/*string*/, $jsonData/*string*/) {
         }
     }
     setResponseOutputs(200, true,
-        ($file_already_exists ? 'Updated' : 'Saved') . " course list for userspace ID '$id'", '',
+        ($file_already_exists ? 'Updated' : 'Saved') . " course list for userspace ID '$user_id'", '',
         $user_id);
+    return true;
 }
 
 
@@ -233,6 +284,9 @@ try {
     if ($action === 'PUT') {
         // Read in the entire request input data as a string.
         $requestInputData = file_get_contents('php:/' . '/input');	// Workaround for SimpleMinimzer.py
+        if ($requestInputData === false) {
+            throw new Exception('Request input data could not be read');
+        }
         if ($requestInputData === '') {
             throw new Exception('Request input data is empty');
         }
@@ -250,6 +304,9 @@ try {
         // Remove the "json_data=" at the beginning and this should leave us with
         // a JSON string.  The individual functions will validate it as needed.
         $requestData = preg_replace('/^\s*json_data\s*=\s*/', '', $requestInputDataDecoded);
+        if ($requestData === null) {
+            throw new Exception('Internal error: json_data replace failed');
+        }
         /*DEV*/saveDiagnosticOutput('$requestData', $requestData, 'Final request input data to be processed by the GSC2API');
     }
 
