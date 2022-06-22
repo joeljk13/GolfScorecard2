@@ -14,7 +14,7 @@ shift
 setlocal
 
 rem Define the key output directories.
-set OUTPUT_DIR_ROOT=!CD!\..\out
+set OUTPUT_DIR_ROOT=!CD!\..\out.build
 
 set OUTPUT_DIR_DIAG=%OUTPUT_DIR_ROOT%\diag
 set OUTPUT_DIR_DIAG_JS=%OUTPUT_DIR_DIAG%\js
@@ -65,8 +65,8 @@ rem JSHint was installed using:  npm install jshint -g
 for %%x in ( *.js ) do (
     echo   Checking "%%x"
     call jshint.cmd "%%x" > "!OUTPUT_DIR_DIAG_JSLINT!\%%x.jshint-output.txt"
-    if exist "!OUTPUT_DIR_DIAG_JSLINT!\%%x.jshnt-output.txt" (
-	    type "!OUTPUT_DIR_DIAG_JSLINT!\%%x.jshnt-output.txt"
+    if exist "!OUTPUT_DIR_DIAG_JSLINT!\%%x.jshint-output.txt" (
+	    type "!OUTPUT_DIR_DIAG_JSLINT!\%%x.jshint-output.txt"
     )
 )
 echo ===== Done
@@ -77,7 +77,8 @@ rem Then process the JavaScript files by minimizing them.
 pushd "..\src\js"
 echo.
 echo ===== Running UglifyJS on the JavaScript files to make sure they are minimized ...
-rem UglifyJS was installed using:  npm install uglify-es -g
+rem OLD: UglifyJS was installed using:  npm install uglify-es -g
+rem NEW: UglifyJS was installed using:  npm install uglify-js -g
 
 if exist "!OUTPUT_DIR_DIST_JS!" (
     echo   Deleting all output JavaScript files in "!OUTPUT_DIR_DIST_JS!"
@@ -98,7 +99,8 @@ if exist "!OUTPUT_DIR_DIAG_JS!" (
 for %%x in ( *.js ) do (
     echo   Minimizing "%%x"
     rem Remove lines that being with "/*DEV*/" as they are for development only.
-    grep -v -e "^\s*/[*]DEV[*]/" "%%x" | call uglifyjs.cmd --ecma 8 > "!OUTPUT_DIR_DIAG_JS!\%%x"
+    rem Note: Removed option in latest version of uglifyjs:  --ecma 8
+    grep -v -e "^\s*/[*]DEV[*]/" "%%x" | call uglifyjs.cmd > "!OUTPUT_DIR_DIAG_JS!\%%x"
     rem Generate the combined file for the entire client-side application.
     type "!OUTPUT_DIR_DIAG_JS!\%%x" >> "!OUTPUT_DIR_DIST_JS!\gsc2app.js"
 )

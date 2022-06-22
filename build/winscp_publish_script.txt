@@ -17,19 +17,19 @@ cd "/home1/jkottas/public_html"
 lcd "C:\Home\Jim\GitProjects\GolfScorecard2"
 
 # Update the production files from the local copy to CJ3.org.
-put -transfer=automatic -neweronly  ".\out\dist\.htaccess"      "./gsc2/"
-put -transfer=automatic -neweronly  ".\out\dist\favicon.ico"    "./gsc2/"
-put -transfer=automatic -neweronly  ".\out\dist\main.html"      "./gsc2/"
-put -transfer=automatic -neweronly  ".\out\dist\robots.txt"     "./gsc2/"
+put -transfer=automatic -neweronly  ".\out.make\dist\.htaccess"      "./gsc2/"
+put -transfer=automatic -neweronly  ".\out.make\dist\favicon.ico"    "./gsc2/"
+put -transfer=automatic -neweronly  ".\out.make\dist\main.html"      "./gsc2/"
+put -transfer=automatic -neweronly  ".\out.make\dist\robots.txt"     "./gsc2/"
 
-synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\out\dist\css"    "./gsc2/css"
-synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\out\dist\js"     "./gsc2/js"
-synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\out\dist\lib"    "./gsc2/lib"
-synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\out\dist\api"    "./gsc2/api"
-synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\out\dist\data\courses"   "./gsc2/data/courses"
+synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\out.make\dist\css"    "./gsc2/css"
+synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\out.make\dist\js"     "./gsc2/js"
+synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\out.make\dist\lib"    "./gsc2/lib"
+synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\out.make\dist\api"    "./gsc2/api"
+synchronize remote -transfer=automatic -criteria=either -mirror -delete ".\out.make\dist\data\courses"   "./gsc2/data/courses"
 
 # Download the scorecards from CJ3.org to back them locally within the development area.
-synchronize local -transfer=automatic -criteria=either -mirror ".\out\dist\data\scorecards"  "./gsc2/data/scorecards"
+synchronize local -transfer=automatic -criteria=either -mirror ".\out.make\dist\data\scorecards"  "./gsc2/data/scorecards"
 
 # Update the development files from the local development area to CJ3.org.
 synchronize remote -transfer=automatic -criteria=either -mirror -delete .  "./gsc2_dev"

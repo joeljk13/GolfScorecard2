@@ -6,10 +6,10 @@
  * application.
  * <br><br>
  * An overview of the JavaScript software architecture for gsc2app is available 
- * <a href="graphs/gsc2app_softarch1.png" alt="Software Architecture Overview">here</a>.
+ * <a href="graphs/gsc2app_softarch1.png" alt="Software Architecture Overview" target="_blank">here</a>.
  *
  * @author Jim Kottas
- * @copyright Copyright (c) 2020-2021 Jim & Joel Kottas.  All rights reserved.
+ * @copyright Copyright (c) 2020-2022 Jim & Joel Kottas.  All rights reserved.
  * @license MIT
  */
 
@@ -163,9 +163,18 @@
  * 
  *      GraphViz
  * 
- *      Python 3.8 or later
+ *      Python3 (version 3.8 or later)
  * 
  *      Standard Linux commands:
+ *          cat
+ *          cp
+ *          cut
+ *          dirname 
  *          grep
+ *          find
+ *          mkdir
+ *          openssl
+ *          rm
  *          sed
+ *          tee
  */
