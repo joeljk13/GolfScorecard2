@@ -2,6 +2,7 @@ tags
 .*.swp
 /out
 /out2
+/src/api/tmp
 /src/data/courses/old
 /src/data/scorecards
 /tmp
